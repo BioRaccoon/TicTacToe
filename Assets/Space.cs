@@ -8,6 +8,8 @@ public class Space : MonoBehaviour
     public Button button;
     public Text buttonText;
     private GameController gameController;
+    private int linePosition;
+    private int columnPosition;
 
     public void SetControllerReference(GameController control)
     {
@@ -19,6 +21,12 @@ public class Space : MonoBehaviour
         buttonText.text = gameController.GetSide();
         button.interactable = false;
         gameController.EndTurn();
+    }
+
+    public void SetPanelPosition(int line, int column)
+    {
+        linePosition = line;
+        columnPosition = column;
     }
 
     // Start is called before the first frame update
