@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public GameObject gameOverPanel;
     public Text gameOverText;
     public GameObject restartButton;
+    public GameObject Board;
     public Text LineAndColumnText;
     private string side;
     private int moves;
@@ -132,7 +133,7 @@ public class GameController : MonoBehaviour
                     LineAndColumnText.text = "A new Line or Column will be added in 2 plays!!";
                     break;
                 case 2:
-                    LineAndColumnText.text = "A new Line or Column will be added in 1 plays!!";
+                    LineAndColumnText.text = "A new Line or Column will be added in 1 play!!";
                     break;
                 default:
                     break;
@@ -282,7 +283,7 @@ public class GameController : MonoBehaviour
                 float rightMaxX = spacesPositions[i, maxColumns - 2].GetComponentInParent<Button>().transform.position.x;
                 float rightMaxY = spacesPositions[i, maxColumns - 2].GetComponentInParent<Button>().transform.position.y;
                 prefabCopy = Instantiate(buttonAndTextPefrab, new Vector3(rightMaxX + horizontal, rightMaxY, 0), Quaternion.identity);
-                prefabCopy.transform.SetParent(canvas.transform, true);
+                prefabCopy.transform.SetParent(Board.transform, true);
                 spacesPositions[i, maxColumns - 1] = prefabCopy.transform.GetChild(0).GetComponent<Text>();
             }
         }
@@ -295,7 +296,7 @@ public class GameController : MonoBehaviour
                 float leftMaxX = spacesPositions[i, 1].GetComponentInParent<Button>().transform.position.x;
                 float leftMaxY = spacesPositions[i, 1].GetComponentInParent<Button>().transform.position.y;
                 prefabCopy = Instantiate(buttonAndTextPefrab, new Vector3(leftMaxX - horizontal, leftMaxY, 0), Quaternion.identity);
-                prefabCopy.transform.SetParent(canvas.transform, true);
+                prefabCopy.transform.SetParent(Board.transform, true);
                 spacesPositions[i, 0] = prefabCopy.transform.GetChild(0).GetComponent<Text>();
             }
         }
@@ -346,9 +347,10 @@ public class GameController : MonoBehaviour
                 float upperMaxX = spacesPositions[1, i].GetComponentInParent<Button>().transform.position.x;
                 float upperMaxY = spacesPositions[1, i].GetComponentInParent<Button>().transform.position.y;
                 prefabCopy = Instantiate(buttonAndTextPefrab, new Vector3(upperMaxX, upperMaxY + vertical, 0), Quaternion.identity);
-                prefabCopy.transform.SetParent(canvas.transform, true);
+                prefabCopy.transform.SetParent(Board.transform, true);
                 spacesPositions[0, i] = prefabCopy.transform.GetChild(0).GetComponent<Text>();
             }
+            Board.transform.position = new Vector3(Board.transform.position.x, Board.transform.position.y - 100, 0);
         }
         else
         {
@@ -359,7 +361,7 @@ public class GameController : MonoBehaviour
                 float lowerMaxX = spacesPositions[maxLines - 2, i].GetComponentInParent<Button>().transform.position.x;
                 float lowerMaxY = spacesPositions[maxLines - 2, i].GetComponentInParent<Button>().transform.position.y;
                 prefabCopy = Instantiate(buttonAndTextPefrab, new Vector3(lowerMaxX, lowerMaxY - vertical, 0), Quaternion.identity);
-                prefabCopy.transform.SetParent(canvas.transform, true);
+                prefabCopy.transform.SetParent(Board.transform, true);
                 spacesPositions[maxLines - 1, i] = prefabCopy.transform.GetChild(0).GetComponent<Text>();
             }
         }
