@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public GameObject restartButton;
     public GameObject Board;
     public Text LineAndColumnText;
+    public GameObject exitButton;
     private string side;
     private int moves;
     private int maxMoves;
@@ -33,6 +34,11 @@ public class GameController : MonoBehaviour
         maxColumns = 3;
         spacesPositions = FillPanel();
         SetGameControllerReferenceForButtons();
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
     private Text[,] FillPanel()
@@ -104,6 +110,10 @@ public class GameController : MonoBehaviour
             restartButton = Instantiate(restartButton);
             restartButton.transform.SetParent(canvas.transform, true);
             restartButton.SetActive(true);
+
+            exitButton = Instantiate(exitButton, new Vector3(restartButton.transform.position.x, restartButton.transform.position.y - 70, 0), Quaternion.identity);
+            exitButton.transform.SetParent(canvas.transform, true);
+
         }
         ChangeSide();
         ChangeBoard();
@@ -232,6 +242,9 @@ public class GameController : MonoBehaviour
         restartButton = Instantiate(restartButton);
         restartButton.transform.SetParent(canvas.transform, true);
         restartButton.SetActive(true);
+
+        exitButton = Instantiate(exitButton, new Vector3(restartButton.transform.position.x, restartButton.transform.position.y - 70, 0), Quaternion.identity);
+        exitButton.transform.SetParent(canvas.transform, true);
 
         SetInteractable(false);
         LineAndColumnText.text = "";
